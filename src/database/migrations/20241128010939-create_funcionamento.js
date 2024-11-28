@@ -1,22 +1,34 @@
-'use strict';
-
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('funcionamento', {
+      id: {
+        type: Sequelize.UUID,
+        primaryKey: true
+      },
+      dia: {
+        type: Sequelize.ENUM('segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado', 'domingo'),
+        allowNull: false
+      },
+      hora_inicio: {
+        type: Sequelize.TIME,
+        allowNull: false
+      },
+      hora_fim: {
+        type: Sequelize.TIME,
+        allowNull: false,
+      },
+      posto_coleta_id: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'posto_coleta',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+      }
+    });
   },
-
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-  }
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('funcionamento');
+  },
 };

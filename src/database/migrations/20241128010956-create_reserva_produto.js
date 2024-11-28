@@ -1,22 +1,33 @@
-'use strict';
-
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('reserva_produto', {
+      reserva_id: {
+        type: Sequelize.UUID,
+        primaryKey: true,
+        allowNull: false,
+        references: {
+          model: 'reserva',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+      },
+      produto_id: {
+        type: Sequelize.UUID,
+        primaryKey: true,
+        allowNull: false,
+        references: {
+          model: 'produto',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
+      },
+      quantidade: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      }
+    });
   },
-
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-  }
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('reserva_produto');
+  },
 };

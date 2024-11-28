@@ -20,7 +20,7 @@ module.exports = {
       posto_coleta_id: {
         type: Sequelize.UUID,
         references: {
-          model: 'post_coleta',
+          model: 'posto_coleta',
           key: 'id',
         },
         onDelete: 'SET NULL',
