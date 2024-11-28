@@ -1,17 +1,25 @@
 const dotenv = require('dotenv');
+const { Sequelize } = require('sequelize');
+const path = require('path');
+
 dotenv.config();
 
 const config = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: '127.0.0.1',
-    dialect: 'postgres',
-    define: {
-        timestemps: true
+    connection: {
+      dialect: 'postgres',
+      database: process.env.DB_NAME,
+      port: '5432',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      define: {
+          timestamps: true,
+          freezeTableName: true
+      }
     }
   },
 };
 
-module.exports = config;
+const sequelize = new Sequelize(config.development.connection);
+
+module.exports = sequelize;
