@@ -13,7 +13,7 @@ const config = {
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       define: {
-          timestamps: true,
+          timestamps: false,
           freezeTableName: true
       }
     }
