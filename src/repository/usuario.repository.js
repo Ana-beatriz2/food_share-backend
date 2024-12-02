@@ -6,7 +6,6 @@ module.exports = {
         try {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(userData.senha, saltRounds);
-            console.log(hashedPassword);
             userData.senha = hashedPassword;
     
             const newUser = await Usuario.create(userData);
