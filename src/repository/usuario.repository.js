@@ -1,10 +1,15 @@
 const Usuario = require("../entity/usuario.entity");
+const bcrypt = require("bcrypt");
 
 module.exports = {
     async createUsuario(userData) {
         try {
-            const newUser = await await Usuario.create(userData);
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(userData.senha, saltRounds);
+            console.log(hashedPassword);
+            userData.senha = hashedPassword;
     
+            const newUser = await Usuario.create(userData);
             return newUser;
         } catch (error) {
            throw error;
