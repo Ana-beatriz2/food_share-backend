@@ -29,7 +29,7 @@ Usuario.init(
           allowNull: false,
         },
         tipoUsuario: {
-          type: DataTypes.ENUM('admin', 'doador', 'receptor'),
+          type: DataTypes.ENUM('doador', 'receptor'),
           allowNull: false,
           field: "tipo_usuario"
         },
