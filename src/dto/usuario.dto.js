@@ -20,8 +20,6 @@ const validaUsuario = (req, res, next) => {
     try {
         const { error } = usuarioDTO.validate(req.body);
 
-        console.log(error);
-
         if (error) {
             const fieldName = error.details[0].path[0];
             if (error.details[0].message.includes("required")) {
