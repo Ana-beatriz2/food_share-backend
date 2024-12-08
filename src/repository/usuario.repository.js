@@ -13,5 +13,14 @@ module.exports = {
         } catch (error) {
            throw error;
         }
+    },
+
+    async getUsuarioByEmail(email) {
+        try{
+            const usuario = await Usuario.findOne({ where: { email } })
+            return usuario;
+        } catch (error) {
+            throw error;
+        }
     }
 }

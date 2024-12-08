@@ -1,10 +1,15 @@
+const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const UsuarioRoutes = require("./usuario.route.js");
+const UsuarioRoutes = require('./usuario.route.js');
+const LoginRoutes = require('./login.route.js');
 
-module.exports = (app) => {
-    app
-      .use(bodyParser.json())
-      .use(cors())
-      .use('/api', UsuarioRoutes)
-};
+const router = express.Router();
+
+router.use(bodyParser.json());
+router.use(cors());
+
+router.use(UsuarioRoutes); 
+router.use(LoginRoutes); 
+
+module.exports = router;
