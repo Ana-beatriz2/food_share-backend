@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { TokenNaoIdentificado, TokenInvalido } = require("../error/jwt.error");
 require("dotenv").config();
 
 function auth(req, res, next){
@@ -14,7 +15,7 @@ function auth(req, res, next){
     
         const [, token] = parts;
     
-        jwt.verify(token, process.env.TOKEN_KEY, (error, data) => {
+        jwt.verify(token, process.env.SECRET_KEY_JWT, (error, data) => {
             if (error) throw error;
     
             req.user_id = { id: data.id, nome: data.nome, email: data.email};
@@ -25,4 +26,4 @@ function auth(req, res, next){
     }
 }
 
-module.exports = auth;
+module.exports = { auth };
