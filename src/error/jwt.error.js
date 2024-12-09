@@ -1,5 +1,5 @@
 class TokenNaoIdentificado extends Error {
-    constructor(message = "Token não identificado!") {
+    constructor(message = "Token não identificado") {
         super(message); 
         this.errorMessage = message
         this.status = 401;
@@ -7,9 +7,11 @@ class TokenNaoIdentificado extends Error {
 }
 
 class TokenInvalido extends Error {
-    constructor(message = "Token inválido!") {
+    constructor(message = "Token inválido") {
         super(message); 
         this.errorMessage = message
         this.status = 401;
     }
 }
+
+module.exports = { TokenNaoIdentificado, TokenInvalido }
