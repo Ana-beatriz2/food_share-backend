@@ -15,7 +15,7 @@ function auth(req, res, next){
         const [, token] = parts;
     
         jwt.verify(token, process.env.TOKEN_KEY, (error, data) => {
-            if (error) return res.status(401).json({ message: `Token error - ${error.message}`});
+            if (error) throw error;
     
             req.user_id = { id: data.id, nome: data.nome, email: data.email};
             return next();
