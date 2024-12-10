@@ -1,5 +1,13 @@
-class UsuarioNaoEncontradoError extends Error {
+class LoginNaoEncontradoError extends Error {
     constructor(message = "Email ou senha incorretos") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 401;
+    }
+}
+
+class UsuarioNaoEncontradoError extends Error {
+    constructor(message = "Usuário não encontrado") {
         super(message); 
         this.errorMessage = message
         this.status = 401;
@@ -14,4 +22,12 @@ class SenhaInvalidaError extends Error {
     }
 }
 
-module.exports = { UsuarioNaoEncontradoError, SenhaInvalidaError };
+class UsuarioJaExistenteError extends Error {
+    constructor(field = "campo", message = `O ${field} inserido já foi cadastrado`) {
+        super(message); 
+        this.errorMessage = message
+        this.status = 401;
+    }
+}
+
+module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError };

@@ -1,5 +1,5 @@
 const usuarioRopository = require('../repository/usuario.repository');
-const { UsuarioNaoEncontradoError, SenhaInvalidaError } = require('../error/usuario.error');
+const { LoginNaoEncontradoError, SenhaInvalidaError } = require('../error/usuario.error');
 const { generateToken } = require('../utils/jwt.utils');
 const { compareSync } = require("bcryptjs");
 
@@ -10,7 +10,7 @@ module.exports = {
             const usuarioExists = await usuarioRopository.getUsuarioByEmail(email);
 
             if (!usuarioExists) {
-                throw new UsuarioNaoEncontradoError();
+                throw new LoginNaoEncontradoError();
             }
 
             if (!compareSync(senha, usuarioExists.senha)){
