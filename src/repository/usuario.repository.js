@@ -44,7 +44,10 @@ module.exports = {
         try {
             await Usuario.update(usuarioData, { where: { id }});
         } catch (error) {
-            console.log(error);
+            if (error.name === 'SequelizeUniqueConstraintError') {
+                const duplicatedField = error.parent.detail.match(/\((.*?)\)/)[1];
+                throw new UsuarioJaExistenteError(duplicatedField);
+               }
             throw error;
         }
     },
