@@ -1,10 +1,15 @@
 const usuarioRepository = require("../repository/usuario.repository.js");
-const { UsuarioNaoEncontradoError } = require("../error/usuario.error.js");
-
+const { UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError } = require("../error/usuario.error.js");
+const bcrypt = require("bcrypt");
 
 module.exports = {
     async createUsuario(userData) {
         try {
+
+            if (!userData.cpnj && !userData.cpf) {
+                throw new UsuarioSemCpjOuCnpjError();
+            }
+
             const newUser = await usuarioRepository.createUsuario(userData);
 
             return newUser;
@@ -29,6 +34,12 @@ module.exports = {
 
             if (!usuario) {
                 throw new UsuarioNaoEncontradoError();
+            }
+
+            if (usuarioData.senha) {
+                const saltRounds = 10;
+                const hashedPassword = await bcrypt.hash(usuarioData.senha, saltRounds);
+                usuarioData.senha = hashedPassword;
             }
 
             await usuarioRepository.updateUsuario(id, usuarioData);

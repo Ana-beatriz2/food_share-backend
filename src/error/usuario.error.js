@@ -26,8 +26,16 @@ class UsuarioJaExistenteError extends Error {
     constructor(field = "campo", message = `O ${field} inserido já foi cadastrado`) {
         super(message); 
         this.errorMessage = message
-        this.status = 401;
+        this.status = 400;
     }
 }
 
-module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError };
+class UsuarioSemCpjOuCnpjError extends Error {
+    constructor(message = "Cpnj ou cpf devem ser preenchidos") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 400;
+    }
+}
+
+module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError };
