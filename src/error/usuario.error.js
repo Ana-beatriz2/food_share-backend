@@ -10,7 +10,7 @@ class UsuarioNaoEncontradoError extends Error {
     constructor(message = "Usuário não encontrado") {
         super(message); 
         this.errorMessage = message
-        this.status = 401;
+        this.status = 404;
     }
 }
 
@@ -38,4 +38,13 @@ class UsuarioSemCpjOuCnpjError extends Error {
     }
 }
 
-module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError };
+class UsuarioSemPermissaoDoador extends Error {
+    constructor(message = "Usuário receptor não possui permissão para essa funcionalidade") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 403;
+    }
+}
+
+
+module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError, UsuarioSemPermissaoDoador };
