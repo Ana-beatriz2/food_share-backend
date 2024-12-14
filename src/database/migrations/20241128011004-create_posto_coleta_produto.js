@@ -1,9 +1,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('posto_coleta_produto', {
+      id: {
+        type: Sequelize.UUID,
+        primaryKey: true
+      },
       posto_coleta_id: {
         type: Sequelize.UUID,
-        allowNull: false,
         references: {
           model: 'posto_coleta',
           key: 'id',
@@ -12,13 +15,21 @@ module.exports = {
       },
       produto_id: {
         type: Sequelize.UUID,
-        primaryKey: true,
         allowNull: false,
         references: {
           model: 'produto',
           key: 'id',
         },
         onDelete: 'CASCADE',
+      },
+      usuario_id: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'usuario',
+          key: 'id',
+        },
+        onDelete: 'SET NULL',
       },
       quantidade: {
         type: Sequelize.INTEGER,
