@@ -22,7 +22,8 @@ function auth(req, res, next){
             return next();
         })
     } catch (error) {
-        return res.status(error.status || 401).json({ "message": error.errorMessage || "Houve um erro na autenticação" });
+        console.log(error);
+        return res.status(error.status || 401).json({ "message": error.errorMessage || error.message });
     }
 }
 

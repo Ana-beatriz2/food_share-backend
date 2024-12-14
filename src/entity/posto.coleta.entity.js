@@ -1,6 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/index.js');
-const Usuario = require("./usuario.entity.js");
 
 class PostoColeta extends Model {}
 
