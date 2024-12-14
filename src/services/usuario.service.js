@@ -22,6 +22,10 @@ module.exports = {
         try{
             const usuario = await usuarioRepository.getUsuarioById(id);
 
+            if (!usuario) {
+                throw new UsuarioNaoEncontradoError();
+            }
+
             return usuario;
         } catch (error) {
             throw error;
