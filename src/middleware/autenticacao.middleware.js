@@ -18,7 +18,7 @@ function auth(req, res, next){
         jwt.verify(token, process.env.SECRET_KEY_JWT, (error, data) => {
             if (error) throw error;
     
-            req.user_id = { id: data.id, nome: data.nome, email: data.email};
+            req.userData = { id: data.id, nome: data.nome, email: data.email};
             return next();
         })
     } catch (error) {
