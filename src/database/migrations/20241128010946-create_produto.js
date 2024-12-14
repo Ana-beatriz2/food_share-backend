@@ -12,10 +12,6 @@ module.exports = {
       marca: {
         type: Sequelize.STRING
       },
-      validade: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
       tipo_alimento: {
         type: Sequelize.STRING
       }

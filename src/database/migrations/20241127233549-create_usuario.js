@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false,
       },
       tipo_usuario: {
-        type: Sequelize.ENUM('admin', 'doador', 'receptor'),
+        type: Sequelize.ENUM('doador', 'receptor'),
         allowNull: false
       },
       telefone: {

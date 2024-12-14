@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('produto_coleta_produto', {
+    await queryInterface.createTable('posto_coleta_produto', {
       posto_coleta_id: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -29,11 +29,14 @@ module.exports = {
       },
       imagem: {
         type: Sequelize.STRING
+      },
+      validade: {
+        type: Sequelize.DATE,
+        allowNull: false
       }
-
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('produto_coleta_produto');
+    await queryInterface.dropTable('posto_coleta_produto');
   },
 };
