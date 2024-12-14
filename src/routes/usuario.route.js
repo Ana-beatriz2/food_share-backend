@@ -5,7 +5,7 @@ const { validaCreateUsuario, validaUpdateUsuario } = require("../dto/usuario.dto
 const { auth } = require("../middleware/autenticacao.middleware.js");
 
 router
-    .post('/usuario', auth, validaCreateUsuario, UsuarioController.createUsuario)
+    .post('/usuario', validaCreateUsuario, UsuarioController.createUsuario)
 
     .get('/usuario/:id', auth, UsuarioController.getUsuario)
 

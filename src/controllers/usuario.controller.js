@@ -1,4 +1,3 @@
-const { update } = require("../entity/usuario.entity.js");
 const usuarioService = require("../services/usuario.service.js");
 
 module.exports = {
