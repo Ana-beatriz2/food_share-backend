@@ -1,3 +1,4 @@
+const Funcionamento = require("../entity/funcionamento.entity");
 const PostoColeta = require("../entity/posto.coleta.entity");
 
 module.exports = {
@@ -14,7 +15,12 @@ module.exports = {
     async getPostosColetaByDoador(doadorId) {
         try {
             const postosColeta = await PostoColeta.findAll({
-                where: { usuarioId: doadorId }
+                where: { usuarioId: doadorId },
+                include: [
+                    { 
+                        model: Funcionamento
+                    }
+                ]
             });
             return postosColeta;
         } catch (error) {
@@ -24,7 +30,13 @@ module.exports = {
 
     async getPostoColetaById(id) {
         try {
-            const postoColeta = await PostoColeta.findByPk(id);
+            const postoColeta = await PostoColeta.findByPk(id, {
+                include: [
+                    { 
+                        model: Funcionamento
+                    }
+                ]
+            });
           
             return postoColeta;
         } catch (error) {
