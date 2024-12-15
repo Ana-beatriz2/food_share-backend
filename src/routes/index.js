@@ -8,6 +8,7 @@ const PostagemRoutes = require('./posto.coleta.produto.route.js');
 const PostoColetaRoutes = require('./posto.coleta.route.js');
 const ProdutoRoutes = require('./produto.route.js');
 const FuncionamentoRoutes = require('./funcionamento.route.js');
+const ReservaRoutes = require('./reserva.route.js');
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.use(PostagemRoutes);
 router.use(PostoColetaRoutes); 
 router.use(ProdutoRoutes); 
 router.use(FuncionamentoRoutes); 
+router.use(ReservaRoutes); 
 
 module.exports = router;
