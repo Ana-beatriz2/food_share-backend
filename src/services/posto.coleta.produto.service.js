@@ -1,9 +1,10 @@
-const postoColetaProdutoRepository = require("../repository/posto.coleta.postagem.repository");
+const postoColetaProdutoRepository = require("../repository/posto.coleta.produto.repository");
 const { PostagemNaoEncontradaError, PropriedadePostagemError } = require("../error/posto.coleta.produto.error");
 
 module.exports = {
-    async createPostagem(postagemData) {
+    async createPostagem(postagemData, usuarioId) {
         try {
+            postagemData.usuarioId = usuarioId;
             const novaPostagem = await postoColetaProdutoRepository.createPostagem(postagemData);
 
             return novaPostagem;

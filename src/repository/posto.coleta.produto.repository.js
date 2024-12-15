@@ -82,6 +82,26 @@ module.exports = {
         }
     },
 
+    async getPostagemByProdutoPostoColeta(postoColetaId, produtoId) {
+      try{
+          const postagem = await PostoColetaProduto.findOne({
+              where: { 
+                postoColetaId,  
+                produtoId,
+                validade: {
+                  [Op.gte]: new Date() 
+                },
+                quantidade: {
+                  [Op.gt]: 0
+                }
+              }
+      });
+          return postagem;
+      } catch (error) {
+          throw error;
+      }
+  },
+
     async updatePostagem(id, postagemData) {
         try {
             await PostoColetaProduto.update(postagemData, { where: { id }});
@@ -89,6 +109,14 @@ module.exports = {
             throw error;
         }
     },
+
+    async updateQuantidadePostagem(postoColetaId, ProdutoId, quantidade) {
+      try {
+          await PostoColetaProduto.update(postagemData, { where: { id }});
+      } catch (error) {
+          throw error;
+      }
+  },
 
     async deletePostagem(id) {
         try {

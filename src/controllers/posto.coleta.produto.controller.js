@@ -4,9 +4,9 @@ module.exports = {
     async createPostagem(req, res) {
         try {
             let postagemData = req.body;
-            postagemData.usuarioId = req.userData.id;
+            const usuarioId = req.userData.id;
   
-            const novaPostagem = await postoColetaProdutoService.createPostagem(postagemData);
+            const novaPostagem = await postoColetaProdutoService.createPostagem(postagemData, usuarioId);
     
             return res.status(201).json(novaPostagem);
         } catch (error) {
