@@ -46,5 +46,21 @@ class UsuarioSemPermissaoDoador extends Error {
     }
 }
 
+class UsuarioSemPermissaoReceptor extends Error {
+    constructor(message = "Usuário doador não possui permissão para essa funcionalidade") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 403;
+    }
+}
 
-module.exports = { LoginNaoEncontradoError, SenhaInvalidaError, UsuarioJaExistenteError, UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError, UsuarioSemPermissaoDoador };
+
+module.exports = { 
+    LoginNaoEncontradoError, 
+    SenhaInvalidaError, 
+    UsuarioJaExistenteError, 
+    UsuarioNaoEncontradoError, 
+    UsuarioSemCpjOuCnpjError, 
+    UsuarioSemPermissaoDoador,
+    UsuarioSemPermissaoReceptor
+};
