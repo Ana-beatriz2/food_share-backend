@@ -6,6 +6,7 @@
  */
 
 /**
+ * @swagger
  * /usuario:
  *   post:
  *     summary: Cria um novo usuário
@@ -131,6 +132,7 @@
  *                   example: null
  *       404:
  *         description: Usuário não encontrado
+ */
 
 /**
  * @swagger
