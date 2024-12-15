@@ -1,5 +1,5 @@
 class PostoColetaNaoEncontradoError extends Error {
-    constructor(message = "Post de coleta não encontrado") {
+    constructor(message = "Posto de coleta não encontrado") {
         super(message); 
         this.errorMessage = message
         this.status = 404;
