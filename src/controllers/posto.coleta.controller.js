@@ -10,7 +10,6 @@ module.exports = {
     
             return res.status(201).json(novoPostoColeta);
         } catch (error) {
-            console.log(error);
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao criar o posto de coleta" });
         }
     },
@@ -22,7 +21,6 @@ module.exports = {
 
             return res.status(200).json(postosColeta);
         } catch (error) {
-            console.log(error);
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao retornar os postos de coleta" });
         }
     },
@@ -48,7 +46,6 @@ module.exports = {
             await postoColetaService.updatePostoColeta(id, usuarioId, postoColetaData);
             return res.status(204).send();
         } catch (error) {
-            console.log(error);
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao atualizar o posto de coleta" });
         }
     },

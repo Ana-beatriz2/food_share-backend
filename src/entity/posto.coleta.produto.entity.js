@@ -61,15 +61,14 @@ PostoColetaProduto.init(
     }
   );
 
-module.exports = PostoColetaProduto;
-
-
-PostoColetaProduto.belongsTo(Produto, { foreignKey: 'produtoId' });
-Produto.hasMany(PostoColetaProduto, { foreignKey: 'produtoId' });
-
-PostoColetaProduto.belongsTo(PostoColeta, { foreignKey: 'postoColetaId' });
-PostoColeta.hasMany(PostoColetaProduto, { foreignKey: 'postoColetaId' });
-
-PostoColetaProduto.belongsTo(Usuario, { foreignKey: 'usuarioId' });
-Usuario.hasMany(PostoColetaProduto, { foreignKey: 'usuarioId' });
+  PostoColetaProduto.belongsTo(Produto, { foreignKey: 'produtoId' });
+  Produto.hasMany(PostoColetaProduto, { foreignKey: 'produtoId' });
+  
+  PostoColetaProduto.belongsTo(PostoColeta, { foreignKey: 'postoColetaId' });
+  PostoColeta.hasMany(PostoColetaProduto, { foreignKey: 'postoColetaId' });
+  
+  PostoColetaProduto.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+  Usuario.hasMany(PostoColetaProduto, { foreignKey: 'usuarioId' });
+  
+  module.exports = PostoColetaProduto;
   
