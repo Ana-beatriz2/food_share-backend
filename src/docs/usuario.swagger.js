@@ -6,10 +6,9 @@
  */
 
 /**
- * @swagger
  * /usuario:
  *   post:
- *     summary: Cria um novo usuário,
+ *     summary: Cria um novo usuário
  *     tags: [Usuários]
  *     security: []
  *     requestBody:
@@ -21,10 +20,10 @@
  *             properties:
  *               nome:
  *                 type: string
- *                 example: João Silva
+ *                 example: Teste
  *               email:
  *                 type: string
- *                 example: joao.silva@email.com
+ *                 example: teste.silva@gmail.com
  *               senha:
  *                 type: string
  *                 example: senha123
@@ -32,6 +31,27 @@
  *                 type: string
  *                 enum: [doador, receptor]
  *                 example: doador
+ *               telefone:
+ *                 type: string
+ *                 example: 1234567890
+ *               bairro:
+ *                 type: string
+ *                 example: Centro
+ *               cidade:
+ *                 type: string
+ *                 example: São Paulo
+ *               logradouro:
+ *                 type: string
+ *                 example: Rua Exemplo, 123
+ *               complemento:
+ *                 type: string
+ *                 example: Apto 101
+ *               estado:
+ *                 type: string
+ *                 example: SP
+ *               cpf:
+ *                 type: string
+ *                 example: 12345678904
  *     responses:
  *       201:
  *         description: Usuário criado com sucesso
@@ -62,7 +82,7 @@
  *         required: true
  *         schema:
  *           type: string
- *           example: "123e4567-e89b-12d3-a456-426614174000"
+ *           example: "9d8af3b4-3941-4fab-a5a8-f11d460d048d"
  *     responses:
  *       200:
  *         description: Usuário encontrado
@@ -73,13 +93,44 @@
  *               properties:
  *                 id:
  *                   type: string
- *                   example: "123e4567-e89b-12d3-a456-426614174000"
+ *                   example: "9d8af3b4-3941-4fab-a5a8-f11d460d048d"
  *                 nome:
  *                   type: string
- *                   example: João Silva
+ *                   example: João Carlos 2
+ *                 email:
+ *                   type: string
+ *                   example: joao2.silva@gmail.com
+ *                 tipoUsuario:
+ *                   type: string
+ *                   enum: [doador, receptor]
+ *                   example: doador
+ *                 telefone:
+ *                   type: string
+ *                   example: 1234567890
+ *                 bairro:
+ *                   type: string
+ *                   example: Centro
+ *                 cidade:
+ *                   type: string
+ *                   example: São Paulo
+ *                 logradouro:
+ *                   type: string
+ *                   example: Rua Exemplo, 123
+ *                 complemento:
+ *                   type: string
+ *                   example: Apto 101
+ *                 estado:
+ *                   type: string
+ *                   example: SP
+ *                 cpf:
+ *                   type: string
+ *                   example: 12345678902
+ *                 cnpj:
+ *                   type: string
+ *                   nullable: true
+ *                   example: null
  *       404:
  *         description: Usuário não encontrado
- */
 
 /**
  * @swagger
