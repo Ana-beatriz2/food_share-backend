@@ -1,5 +1,6 @@
 const postoColetaProdutoService = require("../services/posto.coleta.produto.service");
 
+
 module.exports = {
     async createPostagem(req, res) {
         try {

@@ -1,9 +1,24 @@
 const postoColetaProdutoRepository = require("../repository/posto.coleta.produto.repository");
-const { PostagemNaoEncontradaError, PropriedadePostagemError } = require("../error/posto.coleta.produto.error");
+const postoColetaRepository = require("../services/posto.coleta.service");
+const { PostagemNaoEncontradaError, PropriedadePostagemError, PropriedadePostoColataError, PostagemJaExistenteError } = require("../error/posto.coleta.produto.error");
 
 module.exports = {
     async createPostagem(postagemData, usuarioId) {
         try {
+            const postoColeta = await postoColetaRepository.getPostoColetaById(postagemData.postoColetaId);
+
+            if (postoColeta.usuarioId !== usuarioId) {
+                throw new PropriedadePostoColataError();
+            }
+
+            const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColeta(postagemData.postoColetaId, postagemData.produtoId);
+
+            console.log(postagem);
+            
+            if (postagem) {
+                throw new PostagemJaExistenteError();
+            }
+
             postagemData.usuarioId = usuarioId;
             const novaPostagem = await postoColetaProdutoRepository.createPostagem(postagemData);
 
