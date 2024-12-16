@@ -11,6 +11,7 @@
  *   post:
  *     summary: Realiza o login do usuário
  *     tags: [Login]
+ *     security: []
  *     requestBody:
  *       required: true
  *       content:

@@ -11,7 +11,6 @@
  *   post:
  *     summary: Cria uma nova reserva
  *     tags: [Reservas]
- *     security: []
  *     requestBody:
  *       required: true
  *       content:
@@ -69,7 +68,6 @@
  *   get:
  *     summary: Retorna todas as reservas de um receptor
  *     tags: [Reservas]
- *     security: []
  *     responses:
  *       200:
  *         description: Lista de reservas do receptor
@@ -131,7 +129,6 @@
  *   get:
  *     summary: Retorna todas as reservas não entregues de um receptor
  *     tags: [Reservas]
- *     security: []
  *     responses:
  *       200:
  *         description: Lista de reservas não entregues do receptor
@@ -259,7 +256,6 @@
  *   put:
  *     summary: Atualiza uma reserva existente
  *     tags: [Reservas]
- *     security: []
  *     parameters:
  *       - in: path
  *         name: id

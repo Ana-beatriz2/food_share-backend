@@ -11,7 +11,6 @@
  *   post:
  *     summary: Cria um novo produto
  *     tags: [Produtos]
- *     security: []
  *     requestBody:
  *       required: true
  *       content:

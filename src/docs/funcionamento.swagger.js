@@ -11,7 +11,6 @@
  *   post:
  *     summary: Cria um novo horário de funcionamento
  *     tags: [Funcionamentos]
- *     security: []
  *     requestBody:
  *       required: true
  *       content:
