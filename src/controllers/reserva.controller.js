@@ -58,7 +58,7 @@ module.exports = {
             const { id } = req.params;
             const usuarioId = req.userData.id;
 
-            await reservaService.deleteReserva(id);
+            await reservaService.deleteReserva(id, usuarioId);
             return res.status(204).send();
         } catch (error) {
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao excluir a reserva" });

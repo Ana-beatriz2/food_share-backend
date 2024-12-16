@@ -14,4 +14,12 @@ class PropriedadeReservaError extends Error {
     }
 }
 
-module.exports = { ReservaNaoEcontradaError, PropriedadeReservaError };
+class QuantidadeAlimentoAlteradaError extends Error {
+    constructor(message = "Não é possível trocar a quantidade de alimentos reservados") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 400;
+    }
+}
+
+module.exports = { ReservaNaoEcontradaError, PropriedadeReservaError, QuantidadeAlimentoAlteradaError };
