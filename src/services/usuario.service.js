@@ -1,5 +1,6 @@
 const usuarioRepository = require("../repository/usuario.repository.js");
-const { UsuarioNaoEncontradoError, UsuarioSemCpjOuCnpjError } = require("../error/usuario.error.js");
+const { UsuarioNaoEncontradoError, UsuarioSemCpfOuCnpjError, CpfInvalidoError, CnpjInvalidoError } = require("../error/usuario.error.js");
+const { cpf, cnpj } = require("cpf-cnpj-validator");
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -7,7 +8,15 @@ module.exports = {
         try {
 
             if (!userData.cpnj && !userData.cpf) {
-                throw new UsuarioSemCpjOuCnpjError();
+                throw new UsuarioSemCpfOuCnpjError();
+            }
+
+            if (userData.cpf && !cpf.isValid(userData.cpf)) {
+                throw new CpfInvalidoError();
+            }
+
+            if (userData.cnpj && !cnpj.isValid(userData.cnpj)) {
+                throw new CnpjInvalidoError();
             }
 
             const newUser = await usuarioRepository.createUsuario(userData);
