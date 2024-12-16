@@ -39,6 +39,19 @@ module.exports = {
         }
     },
 
+    async getReservasNaoEntreguesReceptor(req, res) {
+        try {   
+            const usuarioId = req.userData.id;
+
+            const reserva = await reservaService.getReservasNaoEntreguesReceptor(usuarioId);
+
+            return res.status(200).json(reserva);
+        } catch (error) {
+            console.log(error);
+            return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao retornar as reservas não entregues" });
+        }
+    },
+
     async updateReserva(req, res) {
         try {
             const { id } = req.params;
@@ -58,7 +71,7 @@ module.exports = {
             const { id } = req.params;
             const usuarioId = req.userData.id;
 
-            await reservaService.deleteReserva(id);
+            await reservaService.deleteReserva(id, usuarioId);
             return res.status(204).send();
         } catch (error) {
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao excluir a reserva" });

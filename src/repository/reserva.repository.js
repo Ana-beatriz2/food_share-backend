@@ -38,6 +38,29 @@ module.exports = {
         }
     },
 
+    async getReservasNaoEntreguesReceptor(usuarioId) {
+        try {
+            const reservas = await Reserva.findAll({ 
+                where: { usuarioId, entregue: false },
+                include: [
+                    {
+                        model: ReservaProduto,
+                        attributes: ['quantidade'],
+                        include: [
+                            {
+                                model: Produto
+                            }
+                        ]
+                    }
+                ]
+            });
+            
+            return reservas;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     async getReservasByReceptor(usuarioId) {
         try {
             const reservas = await Reserva.findAll({ 

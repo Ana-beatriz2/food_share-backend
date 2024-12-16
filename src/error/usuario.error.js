@@ -30,8 +30,24 @@ class UsuarioJaExistenteError extends Error {
     }
 }
 
-class UsuarioSemCpjOuCnpjError extends Error {
+class UsuarioSemCpfOuCnpjError extends Error {
     constructor(message = "Cpnj ou cpf devem ser preenchidos") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 400;
+    }
+}
+
+class CpfInvalidoError extends Error {
+    constructor(message = "O cpf inserio é inválido") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 400;
+    }
+}
+
+class CnpjInvalidoError extends Error {
+    constructor(message = "O cnpj inserio é inválido") {
         super(message); 
         this.errorMessage = message
         this.status = 400;
@@ -60,7 +76,9 @@ module.exports = {
     SenhaInvalidaError, 
     UsuarioJaExistenteError, 
     UsuarioNaoEncontradoError, 
-    UsuarioSemCpjOuCnpjError, 
+    UsuarioSemCpfOuCnpjError, 
     UsuarioSemPermissaoDoador,
-    UsuarioSemPermissaoReceptor
+    UsuarioSemPermissaoReceptor,
+    CpfInvalidoError,
+    CnpjInvalidoError
 };
