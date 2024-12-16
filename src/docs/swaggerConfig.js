@@ -7,7 +7,7 @@ const swaggerOptions = {
     info: {
       title: 'API FoodShare - Doação de alimentos',
       version: '1.0.0',
-      description: 'Documentação...',
+      description: 'Documentação do FoodShare - Sarah e Ana',
     },
     components: {
       securitySchemes: {
