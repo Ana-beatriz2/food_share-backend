@@ -1,6 +1,6 @@
 const reservaRepository = require("../repository/reserva.repository.js");
 const reservaProdutoRepository = require("../repository/reserva.produto.repository.js");
-const { ReservaNaoEcontradaError, PropriedadeReservaError, QuantidadeAlimentoAlteradaError } = require("../error/reserva.error.js");
+const { ReservaNaoEcontradaError, PropriedadeReservaError, QuantidadeAlimentoAlteradaError, QuantidadeAlimentoInsuficienteError } = require("../error/reserva.error.js");
 const postoColetaProdutoRepository = require("../repository/posto.coleta.produto.repository.js");
 
 module.exports = {
@@ -10,10 +10,15 @@ module.exports = {
 
             const newReserva = await reservaRepository.createReserva({ usuarioId, observacao, dataRetirada, postoColetaId });
 
+            const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColeta(postoColetaId, produtoId);
+            
+            if (postagem.quantidade < quantidade) {
+                throw new QuantidadeAlimentoInsuficienteError();
+            }
+
             const reservaId = newReserva.id;
             await reservaProdutoRepository.createReservaProduto({ reservaId, produtoId, quantidade });
 
-            const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColeta(postoColetaId, produtoId);
             postagem.quantidade -= quantidade;
 
             await postoColetaProdutoRepository.updatePostagem(postagem.id, postagem.dataValues);

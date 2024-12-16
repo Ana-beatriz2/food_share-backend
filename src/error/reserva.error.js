@@ -22,4 +22,12 @@ class QuantidadeAlimentoAlteradaError extends Error {
     }
 }
 
-module.exports = { ReservaNaoEcontradaError, PropriedadeReservaError, QuantidadeAlimentoAlteradaError };
+class QuantidadeAlimentoInsuficienteError extends Error {
+    constructor(message = "Não há alimentos disponíveis suficientes na postagem para atender ao solicitado") {
+        super(message); 
+        this.errorMessage = message
+        this.status = 400;
+    }
+}
+
+module.exports = { ReservaNaoEcontradaError, PropriedadeReservaError, QuantidadeAlimentoAlteradaError, QuantidadeAlimentoInsuficienteError };
