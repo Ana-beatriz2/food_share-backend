@@ -9,6 +9,8 @@ router
     
     .get('/reserva/receptor', auth, verficaPermissaoDeReceptor, ReservaController.getReservasByReceptor)
 
+    .get('/reserva/pendente', auth, verficaPermissaoDeReceptor, ReservaController.getReservasNaoEntreguesReceptor)
+
     .get('/reserva/:id', auth, ReservaController.getReserva)
 
     .put('/reserva/:id', auth, verficaPermissaoDeReceptor, ReservaController.updateReserva)

@@ -49,6 +49,16 @@ module.exports = {
         }
     },
 
+    async getReservasNaoEntreguesReceptor(usuarioId) {
+        try {
+            const reservas = await reservaRepository.getReservasNaoEntreguesReceptor(usuarioId);
+
+            return reservas;
+        } catch (error) {
+            throw error;
+        }
+    },
+
     async updateReserva(id, usuarioId, reservaData) {
         try {
             const reserva = await reservaRepository.getReservaById(id);
