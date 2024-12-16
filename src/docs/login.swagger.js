@@ -37,18 +37,6 @@
  *                 token:
  *                   type: string
  *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
- *                 usuario:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: string
- *                       example: "c8b8a4d3-9ef2-4fe9-bc66-5332ad93a99d"
- *                     nome:
- *                       type: string
- *                       example: "João Silva"
- *                     email:
- *                       type: string
- *                       example: "usuario@exemplo.com"
  *       400:
  *         description: Dados de login inválidos
  *       401:
