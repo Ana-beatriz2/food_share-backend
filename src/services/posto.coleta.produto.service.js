@@ -12,9 +12,6 @@ module.exports = {
             }
 
             const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColeta(postagemData.postoColetaId, postagemData.produtoId);
-
-            console.log(postagem);
-            
             if (postagem) {
                 throw new PostagemJaExistenteError();
             }

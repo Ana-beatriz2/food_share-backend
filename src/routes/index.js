@@ -12,15 +12,14 @@ const ReservaRoutes = require('./reserva.route.js');
 
 const router = express.Router();
 
-router.use(bodyParser.json());
 router.use(cors());
 
 router.use(UsuarioRoutes); 
 router.use(LoginRoutes); 
-router.use(PostagemRoutes); 
 router.use(PostoColetaRoutes); 
 router.use(ProdutoRoutes); 
 router.use(FuncionamentoRoutes); 
 router.use(ReservaRoutes); 
+router.use(PostagemRoutes); 
 
 module.exports = router;

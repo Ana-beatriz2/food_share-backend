@@ -6,7 +6,11 @@ module.exports = {
         try {
             let postagemData = req.body;
             const usuarioId = req.userData.id;
-  
+
+            if (req.file) {
+                postagemData.imagem = req.file.filename; 
+            }
+
             const novaPostagem = await postoColetaProdutoService.createPostagem(postagemData, usuarioId);
     
             return res.status(201).json(novaPostagem);
@@ -78,5 +82,7 @@ module.exports = {
         } catch (error) {
             return res.status(error.status || 500).json({ "message": error.errorMessage || "Houve um erro ao excluir a postagem" });
         }
-    }
+    },
+
+    
 }

@@ -4,9 +4,10 @@ const PostagemController = require("../controllers/posto.coleta.produto.controll
 const { auth } = require("../middleware/autenticacao.middleware.js");
 const { verficaPermissaoDeDoador } = require("../middleware/autorizacao.doador.middleware.js");
 const { validaPostagem } = require("../dto/posto.coleta.produto.dto.js");
+const upload = require('../utils/multer.utils.js');
 
 router
-    .post('/postagem', auth, verficaPermissaoDeDoador, validaPostagem, PostagemController.createPostagem)
+    .post('/postagem', auth, verficaPermissaoDeDoador, upload.single('file'), validaPostagem, PostagemController.createPostagem)
 
     .get('/postagem', auth, PostagemController.getPostagens)
 
