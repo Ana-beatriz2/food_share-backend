@@ -6,14 +6,14 @@ const createUsuarioDTO = Joi.object({
   email: Joi.string().email().max(150).required(),
   senha: Joi.string().min(6).max(255).required(),
   tipoUsuario: Joi.string().valid('doador', 'receptor').required(),
-  telefone: Joi.string().max(15).optional(),
-  bairro: Joi.string().max(255).optional(),
-  cidade: Joi.string().max(255).optional(),
-  logradouro: Joi.string().max(255).optional(),
-  complemento: Joi.string().max(255).optional(),
-  estado: Joi.string().length(2).optional(),
-  cpf: Joi.string().min(11).max(14).optional(),
-  cnpj: Joi.string().min(14).max(18).optional(),
+  telefone: Joi.string().max(15).optional().allow(null),
+  bairro: Joi.string().max(255).optional().allow(null),
+  cidade: Joi.string().max(255).optional().allow(null),
+  logradouro: Joi.string().max(255).optional().allow(null),
+  complemento: Joi.string().max(255).optional().allow(null),
+  estado: Joi.string().length(2).optional().allow(null),
+  cpf: Joi.string().min(11).max(14).optional().allow(null),
+  cnpj: Joi.string().min(14).max(18).optional().allow(null),
 });
 
 const updateUsuarioDTO = Joi.object({
@@ -40,7 +40,6 @@ const validaCreateUsuario = (req, res, next) => {
             if (error.details[0].message.includes("required")) {
                 throw new CampoObrigatorioFaltandoError(`Campo obrigatório '${fieldName}' está faltando`);
             }
-
             throw new InformacaoInvalidaError(`O campo '${fieldName}' é inválido`);
         }
 
