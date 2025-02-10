@@ -5,12 +5,12 @@ const postoColetaDTO = Joi.object({
     id: Joi.string().uuid().optional(),
     nome: Joi.string().min(3).max(255).required(),
     tipo: Joi.string().min(3).max(50).required(),
-    bairro: Joi.string().max(100).optional(),
-    cidade: Joi.string().max(100).optional(),
-    logradouro: Joi.string().max(255).optional(),
-    complemento: Joi.string().max(255).optional(),
-    estado: Joi.string().length(2).optional(),
-    ponto_referencia: Joi.string().max(255).optional()
+    bairro: Joi.string().max(100).optional().allow(null),
+    cidade: Joi.string().max(100).optional().allow(null),
+    logradouro: Joi.string().max(255).optional().allow(null),
+    complemento: Joi.string().max(255).optional().allow(null),
+    estado: Joi.string().length(2).optional().allow(null),
+    ponto_referencia: Joi.string().max(255).optional().allow(null)
 });
 
 const validaPostoColeta = (req, res, next) => {
