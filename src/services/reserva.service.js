@@ -48,7 +48,22 @@ module.exports = {
         try {
             const reservas = await reservaRepository.getReservasByReceptor(usuarioId);
 
-            return reservas;
+            const postagens = await Promise.all(
+                reservas.map(async (reserva) => {
+                    const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColetaNoFilter(
+                        reserva.postoColetaId, 
+                        reserva.ReservaProdutos.Produto.id
+                    );
+                    return postagem;
+                })
+            );
+
+            const reservasComPostagem = reservas.map((reserva, index) => ({
+                ...reserva,
+                postagem: postagens[index], 
+            }));
+
+            return reservasComPostagem;
         } catch (error) {
             throw error;
         }

@@ -102,6 +102,20 @@ module.exports = {
       }
   },
 
+  async getPostagemByProdutoPostoColetaNoFilter(postoColetaId, produtoId) {
+    try{
+        const postagem = await PostoColetaProduto.findOne({
+            where: { 
+              postoColetaId,  
+              produtoId
+            }
+    });
+        return postagem.get();
+    } catch (error) {
+        throw error;
+    }
+},
+
     async updatePostagem(id, postagemData) {
         try {
             await PostoColetaProduto.update(postagemData, { where: { id }});

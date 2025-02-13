@@ -1,3 +1,4 @@
+const PostoColeta = require("../entity/posto.coleta.entity");
 const Produto = require("../entity/produto.entity");
 const Reserva = require("../entity/reserva.entity");
 const ReservaProduto = require("../entity/reserva.produto.entity");
@@ -74,8 +75,13 @@ module.exports = {
                                 model: Produto
                             }
                         ]
-                    }
-                ]
+                    },
+                    {
+                        model: PostoColeta
+                    },
+                ],
+                raw: true,
+                nest: true
             });
             
             return reservas;
