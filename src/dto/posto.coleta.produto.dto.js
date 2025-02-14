@@ -5,14 +5,13 @@ const postoColetaProdutoDTO = Joi.object({
     postoColetaId: Joi.string().uuid().required(),
     produtoId: Joi.string().uuid().required(),
     quantidade: Joi.number().integer().min(1).required(),
-    observacao: Joi.string().max(255).optional(),
+    observacao: Joi.string().max(255).optional().allow(null),
     validade: Joi.date().greater('now').required(),
-});
+}).unknown(true);
 
 const validaPostagem = (req, res, next) => {
     try {
         const { error } = postoColetaProdutoDTO.validate(req.body);
-
         if (error) {
             const fieldName = error.details[0].path[0];
             if (error.details[0].message.includes("required")) {
