@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const Produto = require("../entity/produto.entity");
 const PostoColeta = require("../entity/posto.coleta.entity");
 const Usuario = require("../entity/usuario.entity");
+const Funcionamento = require("../entity/funcionamento.entity");
 
 module.exports = {
     async createPostagem(postagemData) {
@@ -68,7 +69,10 @@ module.exports = {
                       model: Produto
                     },
                     {
-                      model: PostoColeta
+                      model: PostoColeta,
+                      include: {
+                        model: Funcionamento
+                      }
                     },
                     {
                       model: Usuario,
@@ -109,8 +113,13 @@ module.exports = {
               postoColetaId,  
               produtoId
             }
-    });
-        return postagem.get();
+      });
+
+      if (!postagem) {
+        return null; 
+      }
+
+      return postagem.get();
     } catch (error) {
         throw error;
     }

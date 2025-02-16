@@ -2,6 +2,8 @@ const PostoColeta = require("../entity/posto.coleta.entity");
 const Produto = require("../entity/produto.entity");
 const Reserva = require("../entity/reserva.entity");
 const ReservaProduto = require("../entity/reserva.produto.entity");
+const Usuario = require("../entity/usuario.entity");
+const Funcionamento = require("../entity/funcionamento.entity");
 
 
 module.exports = {
@@ -28,12 +30,25 @@ module.exports = {
                                     model: Produto
                                 }
                             ]
+                        },
+                        {
+                            model: PostoColeta,
+                            include: [
+                                {
+                                    model: Funcionamento
+                                }
+                            ]
+                        },
+                        {
+                            model: Usuario,
+                            attributes: { exclude: ['senha'] } 
                         }
-                    ]
+                    ],
+                    nest: true
                 }
             );
 
-            return reserva;
+            return reserva.get({ plain: true });
         } catch (error) {
             throw error;
         }

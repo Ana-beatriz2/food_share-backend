@@ -8,14 +8,14 @@ module.exports = {
         try {
             const { observacao, dataRetirada, postoColetaId, produtoId, quantidade } = reservaData;
 
-            const newReserva = await reservaRepository.createReserva({ usuarioId, observacao, dataRetirada, postoColetaId });
-
             const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColeta(postoColetaId, produtoId);
             
             if (postagem.quantidade < quantidade) {
                 throw new QuantidadeAlimentoInsuficienteError();
             }
-
+            
+            const newReserva = await reservaRepository.createReserva({ usuarioId, observacao, dataRetirada, postoColetaId });
+            
             const reservaId = newReserva.id;
             await reservaProdutoRepository.createReservaProduto({ reservaId, produtoId, quantidade });
 
@@ -38,7 +38,18 @@ module.exports = {
                 throw new ReservaNaoEcontradaError();
             }
 
-            return reserva;
+
+            const postagem = await postoColetaProdutoRepository.getPostagemByProdutoPostoColetaNoFilter(
+                reserva.postoColetaId, 
+                reserva.ReservaProdutos[0].Produto.id
+            );
+
+
+            const reservaComPostagem = {
+                ...reserva,
+                postagem 
+            };
+            return reservaComPostagem;
         } catch (error) {
             throw error;
         }
